@@ -87,12 +87,9 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[_progressIndicator incrementBy:incProgress];
 			[_saveButton setTitle:saveTitle];
+			_sequenceStarterField.integerValue += (_toField.integerValue - _fromField.integerValue + 1);
 		});
 	});
-	
-}
-
--(void)increaseProgress {
 	
 }
 
