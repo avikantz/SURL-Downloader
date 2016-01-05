@@ -18,6 +18,12 @@
 	
 	// Do any additional setup after loading the view.
 	
+	_loadingSpinner.hidden = YES;
+	[self.barProgressView animateProgress:0.0];
+	_progressIndicator.hidden = YES;
+	_statusLabel.hidden = YES;
+	_saveButton.hidden = NO;
+	
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:@"PATH"]) {
 		_pathField.stringValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"PATH"];
 		_urlFormatField.stringValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"URL"];
@@ -42,6 +48,10 @@
 	_progressIndicator.maxValue = 100;
 	_progressIndicator.minValue = 0;
 	
+	_saveButton.hidden = YES;
+	_statusLabel.hidden = NO;
+	_statusLabel.stringValue = @"Loading...";
+	
 //	if (![_urlFormatField.stringValue hasSuffix:@"/"])
 //		_urlFormatField.stringValue = [NSString stringWithFormat:@"%@/", _urlFormatField.stringValue];
 	
@@ -52,6 +62,10 @@
 	[[NSUserDefaults standardUserDefaults] setInteger:_fromField.integerValue forKey:@"FROM"];
 	[[NSUserDefaults standardUserDefaults] setInteger:_urlSeqCountField.integerValue forKey:@"URLSEQ"];
 	[[NSUserDefaults standardUserDefaults] setInteger:_sequenceStarterField.integerValue forKey:@"SEQ"];
+	
+	_loadingSpinner.hidden = NO;
+	[_loadingSpinner startAnimation:nil];
+	_progressIndicator.hidden = NO;
 	
 	__block NSInteger k = _sequenceStarterField.integerValue;
 	incProgress = 100/(_toField.integerValue - _fromField.integerValue);
@@ -89,7 +103,8 @@
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[_progressIndicator incrementBy:incProgress];
-					[_saveButton setTitle:saveTitle];
+					[self.barProgressView animateProgress:_progressIndicator.doubleValue/100];
+					_statusLabel.stringValue = saveTitle;
 				});
 				
 			}
@@ -102,8 +117,13 @@
 		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[_progressIndicator incrementBy:incProgress];
-			[_saveButton setTitle:saveTitle];
+			[self.barProgressView animateProgress:0.0];
+			_statusLabel.stringValue = saveTitle;
+			_statusLabel.hidden = YES;
+			_saveButton.hidden = NO;
 			_sequenceStarterField.integerValue += (_toField.integerValue - _fromField.integerValue + 1);
+			_loadingSpinner.hidden = YES;
+			_progressIndicator.hidden = YES;
 		});
 		
 	});

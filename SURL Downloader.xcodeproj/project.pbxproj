@@ -17,6 +17,8 @@
 		59F0C4CA1B5D22950061A96E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59F0C4C91B5D22950061A96E /* Images.xcassets */; };
 		59F0C4CD1B5D22950061A96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59F0C4CB1B5D22950061A96E /* Main.storyboard */; };
 		59F0C4D91B5D22950061A96E /* SURL_DownloaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F0C4D81B5D22950061A96E /* SURL_DownloaderTests.m */; };
+		59F59BB21C3B996E00F98D46 /* UnderlinedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F59BB11C3B996E00F98D46 /* UnderlinedTextField.m */; };
+		59F59BB51C3B9BEA00F98D46 /* BarProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F59BB41C3B9BEA00F98D46 /* BarProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 		59F0C4D21B5D22950061A96E /* SURL DownloaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SURL DownloaderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		59F0C4D71B5D22950061A96E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59F0C4D81B5D22950061A96E /* SURL_DownloaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SURL_DownloaderTests.m; sourceTree = "<group>"; };
+		59F59BB01C3B996E00F98D46 /* UnderlinedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnderlinedTextField.h; sourceTree = "<group>"; };
+		59F59BB11C3B996E00F98D46 /* UnderlinedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderlinedTextField.m; sourceTree = "<group>"; };
+		59F59BB31C3B9BEA00F98D46 /* BarProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarProgressView.h; sourceTree = "<group>"; };
+		59F59BB41C3B9BEA00F98D46 /* BarProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +116,8 @@
 				59F0C4C21B5D22950061A96E /* AppDelegate.m */,
 				59F0C4C61B5D22950061A96E /* ViewController.h */,
 				59F0C4C71B5D22950061A96E /* ViewController.m */,
+				59F59BB61C3B9BF200F98D46 /* Views */,
 				59F0C4C91B5D22950061A96E /* Images.xcassets */,
-				59F0C4CB1B5D22950061A96E /* Main.storyboard */,
 				59333C891B6CAED800A00804 /* GRVibrantWindow */,
 				59F0C4BF1B5D22950061A96E /* Supporting Files */,
 			);
@@ -142,6 +148,18 @@
 				59F0C4D71B5D22950061A96E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		59F59BB61C3B9BF200F98D46 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				59F0C4CB1B5D22950061A96E /* Main.storyboard */,
+				59F59BB01C3B996E00F98D46 /* UnderlinedTextField.h */,
+				59F59BB11C3B996E00F98D46 /* UnderlinedTextField.m */,
+				59F59BB31C3B9BEA00F98D46 /* BarProgressView.h */,
+				59F59BB41C3B9BEA00F98D46 /* BarProgressView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,8 +264,10 @@
 				59333C861B6CAED300A00804 /* GRVibrantTitlebarView.m in Sources */,
 				59333C881B6CAED300A00804 /* GRVibrantTitleView.m in Sources */,
 				59F0C4C81B5D22950061A96E /* ViewController.m in Sources */,
+				59F59BB21C3B996E00F98D46 /* UnderlinedTextField.m in Sources */,
 				59333C871B6CAED300A00804 /* GRVibrantTitlebarWindow.m in Sources */,
 				59333C851B6CAED300A00804 /* GRSeparatorLineView.m in Sources */,
+				59F59BB51C3B9BEA00F98D46 /* BarProgressView.m in Sources */,
 				59F0C4C51B5D22950061A96E /* main.m in Sources */,
 				59F0C4C31B5D22950061A96E /* AppDelegate.m in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "BarProgressView.h"
 
 @interface ViewController : NSViewController
 
@@ -21,9 +22,12 @@
 @property (weak) IBOutlet NSTextField *extensionField;
 
 @property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+@property (weak) IBOutlet NSProgressIndicator *loadingSpinner;
+@property (weak) IBOutlet BarProgressView *barProgressView;
 
 - (IBAction)saveAction:(id)sender;
 @property (weak) IBOutlet NSButton *saveButton;
+@property (weak) IBOutlet NSTextField *statusLabel;
 
 @end
 

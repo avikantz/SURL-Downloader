@@ -47,7 +47,7 @@
     if (self.titlebarView) return;
     
     // create a vibrant titlebar view and put it in the window
-    self.titlebarView = [[GRVibrantTitlebarView alloc] initWithFrame:NSMakeRect(0, NSHeight(self.frame)-24, NSWidth(self.frame), 24)];
+    self.titlebarView = [[GRVibrantTitlebarView alloc] initWithFrame:NSMakeRect(0, NSHeight(self.frame) - 28, NSWidth(self.frame), 28)];
     self.titlebarView.autoresizingMask = NSViewMinYMargin|NSViewWidthSizable;
     self.titlebarView.blendingMode = NSVisualEffectBlendingModeBehindWindow;
     
