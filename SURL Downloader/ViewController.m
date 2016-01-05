@@ -37,9 +37,13 @@
 }
 
 - (IBAction)saveAction:(id)sender {
+	
 	_progressIndicator.doubleValue = 0;
 	_progressIndicator.maxValue = 100;
 	_progressIndicator.minValue = 0;
+	
+//	if (![_urlFormatField.stringValue hasSuffix:@"/"])
+//		_urlFormatField.stringValue = [NSString stringWithFormat:@"%@/", _urlFormatField.stringValue];
 	
 	[[NSUserDefaults standardUserDefaults] setObject:_urlFormatField.stringValue forKey:@"URL"];
 	[[NSUserDefaults standardUserDefaults] setObject:_pathField.stringValue forKey:@"PATH"];
@@ -52,20 +56,26 @@
 	__block NSInteger k = _sequenceStarterField.integerValue;
 	incProgress = 100/(_toField.integerValue - _fromField.integerValue);
 	
+	NSString *numberFormat = [NSString stringWithFormat:@"%%0.%lili", [_urlSeqCountField integerValue]];
+	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		
 		for (NSInteger i = [_fromField integerValue]; i <= [_toField integerValue]; ++i) {
+			
 			// Linear saving of things
 			NSData *thing = nil;
-			NSString *stringFormat = [NSString stringWithFormat:@"%@%%0.%lili", _urlFormatField.stringValue, [_urlSeqCountField integerValue]];
+			
 			if ([_urlFormatField stringValue]) {
 				
-				NSString *urlString = [[NSString stringWithFormat:stringFormat, i] stringByAppendingString:_extensionField.stringValue];
+				NSString *urlString = [NSString stringWithFormat:@"%@%@", _urlFormatField.stringValue, [[NSString stringWithFormat:numberFormat, i] stringByAppendingString:_extensionField.stringValue]];
+				
 				saveTitle = [NSString stringWithFormat:@"Saving: '%@'", [urlString lastPathComponent]];
 				
 				// Download things.
 				thing = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
 				
 				NSString *extension = _extensionField.stringValue;
+				
 				if (![[NSFileManager defaultManager] fileExistsAtPath:[self imagesPathForFileName:[NSString stringWithFormat:@"%.2li%@", k, extension]]])
 					[thing writeToFile:[self imagesPathForFileName:[NSString stringWithFormat:@"%.2li%@", k, extension]] atomically:YES];
 				else {
@@ -76,19 +86,26 @@
 					}
 					[thing writeToFile:filePath atomically:YES];
 				}
+				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[_progressIndicator incrementBy:incProgress];
 					[_saveButton setTitle:saveTitle];
 				});
+				
 			}
+			
 			k += 1;
+			
 		}
+		
 		saveTitle = @"Done...";
+		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[_progressIndicator incrementBy:incProgress];
 			[_saveButton setTitle:saveTitle];
 			_sequenceStarterField.integerValue += (_toField.integerValue - _fromField.integerValue + 1);
 		});
+		
 	});
 	
 }
